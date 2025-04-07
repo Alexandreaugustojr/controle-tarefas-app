@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Aplicativo de Controle de Tarefas</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header>
+        <h1>Controle de Tarefas</h1>
+        <div id="user-info">
+            <span id="username">Usuário</span>
+            <button id="logout-btn">Sair</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="user-profile">
+                <div class="avatar">U</div>
+                <h3 id="user-name">Usuário</h3>
+                <p id="user-email">email@exemplo.com</p>
+            </div>
+
+            <nav>
+                <ul>
+                    <li class="active" data-section="projects">Projetos</li>
+                    <li data-section="tasks">Tarefas</li>
+                    <li data-section="labels">Etiquetas</li>
+                    <li data-section="users">Usuários</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <!-- PROJETOS -->
+            <section id="projects-section" class="active-section">
+                <button id="new-project-btn">Novo Projeto</button>
+
+                <div id="project-modal" class="modal hidden">
+                    <div class="modal-content">
+                        <h3>Novo Projeto</h3>
+                        <div class="form-group">
+                            <label for="project-name">Nome do Projeto</label>
+                            <input type="text" id="project-name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="project-description">Descrição</label>
+                            <textarea id="project-description"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn">Cancelar</button>
+                            <button type="button" class="save-btn">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="projects-list"></div>
+            </section>
+
+            <!-- TAREFAS -->
+            <section id="tasks-section">
+                <button id="new-task-btn">Nova Tarefa</button>
+                <div id="task-form-container" class="modal">
+                    <form id="task-form">
+                        <h2>Nova Tarefa</h2>
+                        <input type="text" id="task-title" placeholder="Título" required />
+                        <textarea id="task-desc" placeholder="Descrição"></textarea>
+                        <input type="date" id="task-date" />
+                        <select id="task-status">
+                            <option value="pendente">Pendente</option>
+                            <option value="em-andamento">Em andamento</option>
+                            <option value="concluida">Concluída</option>
+                        </select>
+                        <select id="task-project"></select>
+
+                        <!-- Etiquetas -->
+                        <label for="task-labels">Etiquetas:</label>
+                        <select id="task-labels" multiple></select>
+
+                        <button type="submit">Salvar</button>
+                        <button class="cancel-btn">Cancelar</button>
+                    </form>
+                </div>
+
+                <!-- Filtros -->
+                <div class="filters">
+                    <select id="project-filter"></select>
+                    <select id="status-filter">
+                        <option value="">Todos</option>
+                        <option value="pendente">Pendente</option>
+                        <option value="em-andamento">Em andamento</option>
+                        <option value="concluida">Concluída</option>
+                    </select>
+                </div>
+
+                <div id="task-list"></div>
+            </section>
+
+            <!-- ETIQUETAS -->
+            <section id="labels-section">
+                <button id="new-label-btn">Nova Etiqueta</button>
+                <div id="label-form-container" class="modal">
+                    <form id="label-form">
+                        <h2>Nova Etiqueta</h2>
+                        <input type="text" id="label-name" placeholder="Nome da etiqueta" required />
+                        <input type="color" id="label-color" value="#ff0000" />
+                        <button type="submit">Salvar</button>
+                        <button class="cancel-btn">Cancelar</button>
+                    </form>
+                </div>
+                <div id="label-list"></div>
+            </section>
+
+            <!-- USUÁRIOS -->
+            <section id="users-section">
+                <div id="user-list"></div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Backdrop -->
+    <div id="modal-backdrop" class="modal-backdrop hidden"></div>
+
+    <!-- SCRIPTS -->
+    <script src="js/models/User.js"></script>
+    <script src="js/models/project.js"></script>
+    <script src="js/models/Task.js"></script>
+    <script src="js/models/label.js"></script>
+
+    <script src="js/views/UserView.js"></script>
+    <script src="js/views/ProjectView.js"></script>
+    <script src="js/views/TaskView.js"></script>
+    <script src="js/views/LabelView.js"></script>
+
+    <script src="js/controllers/UserController.js"></script>
+    <script src="js/controllers/ProjectController.js"></script>
+    <script src="js/controllers/TaskController.js"></script>
+    <script src="js/controllers/LabelController.js"></script>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
